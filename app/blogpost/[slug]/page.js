@@ -1,3 +1,5 @@
+export const runtime = "nodejs";
+
 import fs from "fs"
 import matter from "gray-matter";
 import rehypeDocument from 'rehype-document'
@@ -28,7 +30,8 @@ export default async function Page({ params }) {
   //   `,
   // };
 
-  const filePath = `content/${slug}.md`;
+  const filePath = `public/content/${slug}.md`;
+  console.log("🔍 Looking for:", filePath);
   const fileContent = fs.readFileSync(filePath, 'utf-8');
   const {data, content} = matter(fileContent);
 
