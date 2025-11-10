@@ -3,15 +3,27 @@ import Link from "next/link";
 import fs from "fs"
 import matter from "gray-matter"
 
-const dirContent = fs.readdirSync("content", "utf-8");
+let blogs = [];
+try {
+  const dirContent = fs.readdirSync("public/content", "utf-8");
+  blogs = dirContent.map(file => {
+    try {
+      const fileContent = fs.readFileSync(`public/content/${file}`, "utf-8");
+      const { data } = matter(fileContent);
+      return {
+        ...data,
+        slug: file.replace('.md', '') // Ensure slug is always set
+      };
+    } catch (err) {
+      console.error(`Error reading file ${file}:`, err);
+      return null;
+    }
+  }).filter(Boolean); // Remove any null entries
+} catch (err) {
+  console.error("Error reading content directory:", err);
+}
 
-const blogs = dirContent.map(file => {
-  const fileContent = fs.readFileSync(`content/${file}`, "utf-8");
-  const { data } = matter(fileContent)
-  return data
-})
 
-// const blogs = [
 //   {
 //     id: 1,
 //     title: "Mastering Tailwind CSS for Developers",
