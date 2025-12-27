@@ -16,7 +16,7 @@ export default async function Page({ params }) {
 
   const { slug } = await params;
 
-  const filePath = `/public/content/${slug}.md`;
+  const filePath = `public/content/${slug}`;
 
   
     const fileContent = fs.readFileSync(filePath, 'utf-8');
