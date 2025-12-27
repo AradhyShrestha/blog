@@ -10,7 +10,6 @@ import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
 import rehypePrettyCode from "rehype-pretty-code";
 import { transformerCopyButton } from '@rehype-pretty/transformers'
-import BlogError from '@/components/blog-error'
 
 
 export default async function Page({ params }) {
