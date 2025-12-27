@@ -16,25 +16,10 @@ import BlogError from '@/components/blog-error'
 export default async function Page({ params }) {
 
   const { slug } = await params;
-  // Example blog object (replace later with fetched data)
-  // const blog = {
-  //   title: "Understanding Next.js 15 Features",
-  //   author: "Nimish Shrestha",
-  //   date: "October 10, 2025",
-  //   desc: "Explore the newest capabilities introduced in Next.js 15 — from faster rendering to smarter caching.",
-  //   html: `
-  //     <p>Next.js 15 introduces several performance upgrades and new developer tools that make modern web apps even more powerful.</p>
-  //     <h2>1. Improved Caching</h2>
-  //     <p>The new caching layer intelligently manages server-side and client-side data, making apps faster and more efficient.</p>
-  //     <h2>2. Enhanced Image Optimization</h2>
-  //     <p>Next.js 15 now supports automatic AVIF conversion, drastically reducing image size while maintaining quality.</p>
-  //   `,
-  // };
 
   const filePath = `public/content/${slug}.md`;
-  console.log("🔍 Looking for:", filePath);
 
-  try {
+  
     const fileContent = fs.readFileSync(filePath, 'utf-8');
     const { data, content } = matter(fileContent);
 
@@ -61,11 +46,7 @@ export default async function Page({ params }) {
 
       .process(content)
 
-    }
 
-    catch(e){
-      console.log(e)
-    }
     const htmlContent = processedContent.toString();
 
 
