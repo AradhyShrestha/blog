@@ -20,7 +20,11 @@ export default async function Page({ params }) {
 
   
     const fileContent = fs.readFileSync(filePath, 'utf-8');
+  console.log(fileContent)
+  console.log(filePath)
     const { data, content } = matter(fileContent);
+    console.log(data)
+    console.log(content)
 
     if (!data || !content) {
       throw new Error('Invalid markdown content');
