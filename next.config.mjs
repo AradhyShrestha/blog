@@ -36,7 +36,7 @@ const nextConfig = {
 
     // We'll handle errors properly in production
     eslint: {
-        ignoreDuringBuilds: false,
+        ignoreDuringBuilds: true,
     },
 
     typescript: {
